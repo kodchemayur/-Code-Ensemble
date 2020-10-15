@@ -1,98 +1,100 @@
-#include <bits/stdc++.h>
+// /Code by : Harry_Singh/
+#include<bits/stdc++.h>
+#define int long long int 
+#define io ios_base::sync_with_stdio(false),cin.tie(nullptr);
+#define ipair pair<int,int>
+#define pb push_back
+#define f(i,n) for(int i=0;i<n;i++)
+#define fo(i,n) for(int i=n;i>=0;i--)
+#define F(i,n) for(int i=1;i<=n;i++)
+#define FO(i,n) for(int i=n;i>=1;i--)
+#define mod 1000000007
 using namespace std;
-#define bitcount(x) __builtin_popcount(x)
-#define ll long long int
-#define INF 1000000007
-#define PI 3.1415926535897932384626
-#define endl "\n"
-#define all(v) (v).begin(),(v).end()
-#define mems(x, y) memset(x, y, sizeof(x))
-const int mxN=5e4;
-typedef pair<int, int>pii;
-typedef pair<ll, ll>pl;
-typedef vector<int>vi;
-typedef vector<ll>vl;
-typedef vector<pii>	vpii;
-typedef vector<pl>vpl;
-typedef vector<vi>vvi;
-typedef vector<vl>vvl;
-int main()
+#define inf 100000000000000009
+#define tr cout<<"\n" 
+#define br break
+#define N 10005
+// directions
+int xx[5]={0,0,1,-1};
+int yy[5]={1,-1,0,0};
+vector<int > G[N],L[N];
+void we_have_choices()
 {
-    ios_base::sync_with_stdio(false);
-   	cin.tie(NULL);
-   	cout.tie(0);
-   	long long int t;
-   	cin>>t;
-   	while(t--)
+    string  s;
+    cin>>s;
+    int x,y;
+    cin>>x>>y;
+    int q;
+    cin>>q;
+
+int l=0,r=0,u=0,d=0;
+    for(int i=0;i<s.length();i++)
     {
-       string s;
-       int x,y,n;
-       cin>>s;
-       cin>>x>>y>>n;
-       int l=s.size();
-       int a[4]={};
-       for(int i=0;i<l;i++)
-       {
-           if(s[i]=='R')
-           {
-               a[0]++;
-           }
-           if(s[i]=='L')
-           {
-               a[1]++;
-           }
-           if(s[i]=='U')
-           {
-               a[2]++;
-           }
-           if(s[i]=='D')
-           {
-               a[3]++;
-           }
-       }
-       while(n--)
-       {
-           int b[4]={};
-           int x1,y1;
-           cin>>x1>>y1;
-           int sum1=x1-x,sum2=y1-y,s=0;
-           if(sum1>0)
-           {
-               b[0]=sum1;
-               s=s+sum1;
-           }
-           else 
-           {
-               sum1=(-1)*sum1;
-               b[1]=sum1;
-               s=s+sum1;
-           }
-           if(sum2>0)
-           {
-               b[2]=sum2;
-               s=s+sum2;
-           }
-           else 
-           {
-               sum2=(-1)*sum2;
-               b[3]=sum2;
-               s=s+sum2;
-           }
-           int flag=0;
-           for(int i=0;i<4;i++)
-           {
-               if(a[i]<b[i])
-               {
-                   cout<<"NO"<<endl;
-                   flag=1;
-                   break;
-               }
-           }
-           if(flag==0)
-           {
-                cout<<"YES "<<s<<endl;
-           }
-       }
+     if(s[i]=='R')r++;
+        else if(s[i]=='L')l++;
+        else if(s[i]=='D') d++;
+        else u++;
     }
-   	return 0;
+    while(q--)
+    {
+        int a,b;
+        cin>>a>>b;
+         int flag=1;
+         int c=0;
+         if(a>=x)
+         {
+            int ans=a-x;
+            if(r>=ans)c+=ans;
+            else flag=0;
+            
+            
+         }
+         if(a<x)
+         {
+            int ans=x-a;
+            if(l>=ans)c+=ans;
+            else flag=0;
+         }
+         if(b>=y)
+         {
+            int ans=b-y;
+            if(u>=ans)c+=ans;
+            else flag=0;
+            
+            
+
+         }
+         if(b<y)
+         {
+            int ans=y-b;
+            if(d>=ans)c+=ans;
+            else flag=0;
+         }
+         
+         if(!flag)cout<<"NO";
+         else cout<<"YES "<<c;
+         tr;
+
+
+
+
+    }
+
+}
+
+
+
+
+
+
+int32_t main()
+{
+#ifndef ONLINE_JUDGE
+ freopen("input.txt","r",stdin);
+ freopen("out.txt","w",stdout);
+#endif
+    io;
+    int t;cin>>t;
+    while (t--)we_have_choices();
+    return 0;
 }
